@@ -1,0 +1,1 @@
+# lenovo-x13s
