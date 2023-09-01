@@ -17,3 +17,5 @@ This should allow you to get a decent enough working system without having to co
 kernel with working sound, wifi. 
 https://github.com/steev/linux/tree/lenovo-x13s-linux-6.3.y
 
+For more info on development, see irc on oftc #aarch64-laptops
+https://oftc.irclog.whitequark.org/aarch64-laptops/2023-09-01
