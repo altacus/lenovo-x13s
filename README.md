@@ -1,5 +1,6 @@
-# lenovo-x13s
+# lenovo-x13s Debian
 
+## Instalation
 Debian Instalation directions [doc](https://docs.google.com/document/d/1WuxE-42ZeOkKAft5FuUk6C2fonkQ8sqNZ56ZmZ49hGI/edit#heading=h.d1689esafsky)
 
 Follow all directions up to step 5. From step 5 follow the following steps
@@ -16,11 +17,24 @@ git clone https://github.com/kvalo/ath11k-firmware.git
 cd ath11k-firmware
 sudo cp -r WCN6855/hw2.0/* /lib/firmware/ath11k/WCN6855/hw2.0/
 ```
-
-
 This should allow you to get a decent enough working system without having to compile a new kernel.
 
+
+## IRC for latest information
+
 For more info on development, see irc on oftc #aarch64-laptops. Logs [here](https://oftc.irclog.whitequark.org/aarch64-laptops/2023-09-01)
+
+## Kernel Related stuff
+
+General Kernel Building example (Steev) 
+```
+git clone https://github.com/steev/linux
+git checkout lenovo-x13s-linux-6.5.y
+make laptop_defconfig
+make -j8 bindeb-pkg
+```
+
+note to append a local version to the kernel name `make -j8 bindeb-pkg LOCALVERSION "-my123"`
 
 Steev's Kernel with working sound, wifi, no additional patching necessary [6.3.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.3.y)
 
