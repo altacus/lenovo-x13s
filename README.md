@@ -11,9 +11,11 @@ Follow all directions up to step 5. From step 5 follow the following steps
 *  upgrade [script](https://people.linaro.org/~manivannan.sadhasivam/x13s_upgrade/)
 
 To get 5ghz wifi to work do the following
+```
 git clone https://github.com/kvalo/ath11k-firmware.git
 cd ath11k-firmware
 sudo cp -r WCN6855/hw2.0/* /lib/firmware/ath11k/WCN6855/hw2.0/
+```
 
 
 This should allow you to get a decent enough working system without having to compile a new kernel.
