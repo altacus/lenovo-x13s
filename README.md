@@ -38,16 +38,17 @@ note to append a local version to the kernel name
 make -j8 bindeb-pkg LOCALVERSION "-my123"
 ```
 
-Steev's Kernel with working sound, wifi, no additional patching necessary [6.3.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.3.y)
+Steev's Kernel with working sound, wifi, no additional patching necessary for Debian [6.3.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.3.y)
 
 ## 6.5.y Kernel 
+Using Debian, there were issues encountered when using Steev kernel [6.5.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.5.y) 
 
 ### Audio issues resolution (dummy output only)
-Using Steev kernel [6.5.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.5.y) to get audio working follow the follow steps (from [chat](https://oftc.irclog.whitequark.org/aarch64-laptops/2023-07-24)) I included links here for thoroughness.
+To get audio working follow the follow steps (from [chat](https://oftc.irclog.whitequark.org/aarch64-laptops/2023-07-24)) I included links here for thoroughness.
 *  Get the new [firmware](https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/qcom/sc8280xp/LENOVO/21BX/audioreach-tplg.bin?id=f9a35b3f0779844aa686b76506344db70a72820d)
-*  Apply top 4 patches [here](https://github.com/Srinivas-Kandagatla/alsa-ucm-conf/commits/x13s-volume-fixes)
-*  Apply Patch [from](https://github.com/alsa-project/alsa-ucm-conf/commit/9bda3d15cc38bb705a1aa13f58adfea74bf37fe8)
-*  Apply Patch [from](https://github.com/alsa-project/alsa-ucm-conf/pull/335)
+*  Apply top 4 patches by [Srinivas-Kandagatla](https://github.com/Srinivas-Kandagatla/alsa-ucm-conf/commits/x13s-volume-fixes)
+*  Apply Device Number [Patch](https://github.com/alsa-project/alsa-ucm-conf/commit/9bda3d15cc38bb705a1aa13f58adfea74bf37fe8)
+*  Apply Volume Fix [Patch](https://github.com/alsa-project/alsa-ucm-conf/pull/335)
 
 The changes are reflected in files in this git repo in the /lib and /usr directories
 
