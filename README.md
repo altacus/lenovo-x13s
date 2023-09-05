@@ -41,7 +41,7 @@ make -j8 bindeb-pkg LOCALVERSION "-my123"
 Steev's Kernel with working sound, wifi, no additional patching necessary for Debian [6.3.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.3.y)
 
 ## 6.5.y Kernel 
-There were issues encountered when using Steev kernel [6.5.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.5.y) 
+There were issues encountered when using Steev kernel [6.5.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.5.y). 
 
 ### Audio issues resolution (dummy output only)
 To get audio working follow the steps (from [chat](https://oftc.irclog.whitequark.org/aarch64-laptops/2023-07-24)) I included links here for thoroughness.
@@ -50,12 +50,11 @@ To get audio working follow the steps (from [chat](https://oftc.irclog.whitequar
 *  Apply Device Number [Patch](https://github.com/alsa-project/alsa-ucm-conf/commit/9bda3d15cc38bb705a1aa13f58adfea74bf37fe8)
 *  Apply Volume Fix [Patch](https://github.com/alsa-project/alsa-ucm-conf/pull/335)
 
-The changes are reflected in files in this git repo in the [/lib](https://github.com/altacus/lenovo-x13s/tree/main/lib) and [/usr](https://github.com/altacus/lenovo-x13s/tree/main/usr) directories
+The changes are reflected in files in the [/lib](https://github.com/altacus/lenovo-x13s/tree/main/lib) and [/usr](https://github.com/altacus/lenovo-x13s/tree/main/usr) directories.
 
 ### ASPM
-Paraphrased from logs [here](https://oftc.irclog.whitequark.org/aarch64-laptops/2023-08-28)
-To enable ASPM which increases battery time 
+Paraphrased from logs [here](https://oftc.irclog.whitequark.org/aarch64-laptops/2023-08-28) regarding ASPM which increases battery time 
 *  idle time increases from from 10h to 15h
 *  29h of suspend
 
-To enable it, pass `pcie_aspm.policy=powersupersave` on the kernel command line or enable it through sysfs 
+To enable ASPM, pass `pcie_aspm.policy=powersupersave` on the kernel command line or enable it through sysfs 
