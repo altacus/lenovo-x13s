@@ -50,7 +50,7 @@ To get audio working follow the follow steps (from [chat](https://oftc.irclog.wh
 *  Apply Device Number [Patch](https://github.com/alsa-project/alsa-ucm-conf/commit/9bda3d15cc38bb705a1aa13f58adfea74bf37fe8)
 *  Apply Volume Fix [Patch](https://github.com/alsa-project/alsa-ucm-conf/pull/335)
 
-The changes are reflected in files in this git repo in the /lib and /usr directories
+The changes are reflected in files in this git repo in the [/lib](https://github.com/altacus/lenovo-x13s/tree/main/lib) and [/usr](https://github.com/altacus/lenovo-x13s/tree/main/usr) directories
 
 ### ASPM
 Paraphrased from logs [here](https://oftc.irclog.whitequark.org/aarch64-laptops/2023-08-28)
