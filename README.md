@@ -40,6 +40,9 @@ make -j8 bindeb-pkg LOCALVERSION "-my123"
 
 Steev's Kernel with working sound, wifi, no additional patching necessary for Debian [6.3.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.3.y)
 
+## Firmware
+If you are missing firmware, a good resource would be this [repo.](https://github.com/ironrobin/x13s-alarm)
+
 ## 6.5.y Kernel 
 There were issues encountered when using Steev kernel [6.5.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.5.y). 
 
