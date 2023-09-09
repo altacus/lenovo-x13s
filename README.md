@@ -1,4 +1,26 @@
-# lenovo-x13s Debian
+# Debian on Lenovo-x13s 
+This outlines resources to get Debian running on Lenovo's x13s. Note, this process is far from stream lined. It is not for the novice Linux User. There is a high probability that you could ruin the windows install/laptop if you are not careful. To get things working well involves compiling custom kernels. 
+
+## Features
+Below are a list of features that "work". Please note that there is still a lot of development being done and even though things may "work" they may not be perfect.
+
+- [x] USB
+- [x] GUI Desktop (Gnome/Wayland)
+- [x] Keyboard
+- [x] Touchpad
+- [ ] Touchscreen
+- [x] WiFi (2.4 ghz & 5 ghz)
+- [ ] Bluetooth
+- [ ] LTE
+- [ ] Accelerated Graphics
+- [ ] Camera
+- [x] Audio - not perfect but works
+
+### Battery Life
+I've noticed that currently, battery life is still much better in Windows 11 than it is in Debian. However, with the 6.5.y kernel and ASPM enabled, idle battery life is on par with Windows.
+
+### Graphics
+I have not confirmed the final state of graphics accerlation, but basic youtube videos on Firefox-esr works well enough. I could not get DRM in firefox-esr working so no Netflix/Amazon Prime, etc.
 
 ## Instalation
 Debian Instalation directions [doc](https://docs.google.com/document/d/1WuxE-42ZeOkKAft5FuUk6C2fonkQ8sqNZ56ZmZ49hGI/edit#heading=h.d1689esafsky)
@@ -25,26 +47,51 @@ For more info on development, see irc on irc.oftc.net #aarch64-laptops. Please s
 
 ## Kernel Related stuff
 
-General Kernel Building example (Steev) 
+Install pre-requisites
+
+```shell
+sudo apt install bc bison build-essential debhelper flex libssl-dev make rsync
 ```
+
+General Kernel Building example (Steev) 
+```shell
 git clone https://github.com/steev/linux
 git checkout lenovo-x13s-linux-6.5.y
 make laptop_defconfig
 make -j8 bindeb-pkg
 ```
 
-note to append a local version to the kernel name 
-```
+To append a local version to the kernel name 
+```shell
 make -j8 bindeb-pkg LOCALVERSION "-my123"
+```
+
+The debian packages will be in the parent directory.  To install
+
+```shell
+cd ..
+dpkg -i linux-image-6.0.0-rc3+_6.0.0-rc3+-3_arm64.deb
+```
+
+The DTB file which is used during the boot process is located in /boot/efi/dtb folder. Hence after installing a new kernel it is recommended to update the DTB file with the new version. The DTB files are different for the Lenovo X13s and the Makena CRD:
+
+To update the DTB, simply override them, e.g.:
+
+```shell
+sudo cp /usr/lib/<kernel version>/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb /boot/efi/dtb/f249803d-0d95-54f3-a28f-f26c14a03f3b.dtb
 ```
 
 Steev's Kernel with working sound, wifi, no additional patching necessary for Debian [6.3.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.3.y)
 
 ## Firmware
-If you are missing firmware, a good resource would be this [repo.](https://github.com/ironrobin/x13s-alarm)
+If you are missing firmware, a good resource would be this [repo.](https://github.com/ironrobin/x13s-alarm) After updating the firmware, re-run update initramfs to be safe.
+
+```
+sudo update-initramfs -u
+```
 
 ## 6.5.y Kernel 
-There were issues encountered when using Steev kernel [6.5.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.5.y). 
+Steev's [6.5.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.5.y) has significant improvements, however, at the time of this writing, the Debian packages in sid have not caught up to the kernel development. To resolve the Audio issues continue below.
 
 ### Audio issues resolution (dummy output only)
 To get audio working follow the steps (from [chat](https://oftc.irclog.whitequark.org/aarch64-laptops/2023-07-24)) I included links here for thoroughness.
