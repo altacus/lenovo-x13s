@@ -12,7 +12,7 @@ Below are a list of features that "work". Please note that there is still a lot 
 - [x] GUI Desktop (Gnome/Wayland)
 - [x] Keyboard
 - [x] Touchpad
-- [x] Touchscreen (with udev patch)
+- [x] Touchscreen (with [udev rule](https://github.com/altacus/lenovo-x13s#touchscreen))
 - [x] WiFi (2.4 ghz & 5 ghz)
 - [x] Bluetooth (Tested bluetooth mouse)
 - [ ] LTE
