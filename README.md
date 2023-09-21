@@ -1,5 +1,9 @@
-# Debian on Lenovo-x13s 
-This outlines resources to get Debian running on Lenovo's x13s. Note, this process is far from stream lined. It is not for the novice Linux User. There is a high probability that you could ruin the windows install/laptop if you are not careful. To get things working well involves compiling custom kernels. 
+# Linux on Lenovo-x13s 
+This outlines resources to get Debian and Ubuntu running on Lenovo's x13s. This is not for the novice Linux User. There is a real chance that you could ruin the windows install/laptop if you are not careful. 
+
+The Ubuntu installation is easier, but the scripts take longer to run. The default kernel is 6.2. Upgrading from Lunar to Mantic will provide a 6.5 kernel (but read the fine print on upgrading). No kernel compilation/manual firmware updates are necessary.
+
+The Debian installation is more involved. The default kernel is 6.0 but the provided script (on installation guide) will upgrade this to 6.2. The 6.4.1 kernel can be compiled and will work without firmware updates. Kernels later than 6.4.1 requires firmware/packages to be updated. **On Debian, grub package updates have been known to make the system unbootable.**
 
 ## Features
 Below are a list of features that "work". Please note that there is still a lot of development being done and even though things may "work" they may not be perfect.
@@ -8,9 +12,9 @@ Below are a list of features that "work". Please note that there is still a lot 
 - [x] GUI Desktop (Gnome/Wayland)
 - [x] Keyboard
 - [x] Touchpad
-- [ ] Touchscreen
+- [x] Touchscreen (with udev patch)
 - [x] WiFi (2.4 ghz & 5 ghz)
-- [ ] Bluetooth
+- [x] Bluetooth (Tested bluetooth mouse)
 - [ ] LTE
 - [ ] Accelerated Graphics
 - [ ] Camera
@@ -22,7 +26,11 @@ I've noticed that currently, battery life is still much better in Windows 11 tha
 ### Graphics
 I have not confirmed the final state of graphics accerlation, but basic youtube videos on Firefox-esr works well enough. I could not get DRM in firefox-esr working so no Netflix/Amazon Prime, etc.
 
-## Instalation
+# Ubuntu Installation
+
+Ubuntu Installation are located ath the [X13s Concept page](https://launchpad.net/~ubuntu-concept/+archive/ubuntu/x13s) The directions there are pretty complete and thorough. In addition, upgrading to Mantic will provide the 6.5 Linux kernel, which is pretty up to date, without the need to upgrade firmware/compile kernel. This is the recommended distro for people who just want a working system with the least amount of effort.
+
+# Debian Instalation
 Debian Instalation directions [doc](https://docs.google.com/document/d/1WuxE-42ZeOkKAft5FuUk6C2fonkQ8sqNZ56ZmZ49hGI/edit#heading=h.d1689esafsky)
 
 Follow all directions up to step 5. From step 5 follow the following steps
@@ -41,11 +49,11 @@ sudo cp -r WCN6855/hw2.0/* /lib/firmware/ath11k/WCN6855/hw2.0/
 ```
 This should allow you to get a decent enough working system without having to compile a new kernel.
 
-## IRC 
+# IRC 
 
 For more info on development, see irc on irc.oftc.net #aarch64-laptops. Please search [logs](https://oftc.irclog.whitequark.org/aarch64-laptops/2023-09-01) to help find answers quicker.
 
-## Kernel Related stuff
+# Kernel and Firmware Related stuff
 
 Install pre-requisites
 
@@ -102,9 +110,20 @@ To get audio working follow the steps (from [chat](https://oftc.irclog.whitequar
 
 The changes are reflected in files in the [/lib](https://github.com/altacus/lenovo-x13s/tree/main/lib) and [/usr](https://github.com/altacus/lenovo-x13s/tree/main/usr) directories.
 
-### ASPM
+## ASPM
 Paraphrased from logs [here](https://oftc.irclog.whitequark.org/aarch64-laptops/2023-08-28) regarding ASPM which increases battery time 
 *  idle time increases from from 10h to 15h
 *  29h of suspend
 
 To enable ASPM, pass `pcie_aspm.policy=powersupersave` on the kernel command line or enable it through sysfs 
+
+## Touchscreen
+
+Tested with 6.5.y kernel (and later). To get the touchscreen working, copy the [72-x13s-touchscreen.rules](https://github.com/ironrobin/x13s-alarm/blob/trunk/x13s-touchscreen-udev/72-x13s-touchscreen.rules) file to `/lib/udev/rules.d/` and reboot. The text of the file is below.
+
+72-x13s-touchscreen.rules
+```
+ACTION=="add" \
+, RUN+="/bin/bash -c 'echo 4-0010 > /sys/bus/i2c/drivers/i2c_hid_of/bind'"
+```
+
