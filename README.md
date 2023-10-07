@@ -1,24 +1,25 @@
 # Linux on Lenovo-x13s 
 This outlines resources to get Debian and Ubuntu running on Lenovo's x13s. This is not for the novice Linux User. There is a real chance that you could ruin the windows install/laptop if you are not careful. 
 
-The Ubuntu installation is easier, but the scripts take longer to run. The default kernel is 6.2. Upgrading from Lunar to Mantic will provide a 6.5 kernel (but read the fine print on upgrading). No kernel compilation/manual firmware updates are necessary.
+The Ubuntu installation is easier, but the scripts take longer to run. NOTE Ubuntu's booting process does not play nicely with bitlocker. The default kernel is 6.2. Upgrading from Lunar to Mantic will provide a 6.5 kernel (but read the fine print on upgrading). No kernel compilation/manual firmware updates are necessary.
 
-The Debian installation is more involved. The default kernel is 6.0 but the provided script (on installation guide) will upgrade this to 6.2. The 6.4.1 kernel can be compiled and will work without firmware updates. Kernels later than 6.4.1 requires firmware/packages to be updated. **On Debian, grub package updates have been known to make the system unbootable.**
+The Debian installation is more involved. The default kernel is 6.0 but the provided script (on installation guide) will upgrade this to 6.2. The 6.4.1 kernel can be compiled and will work without additional firmware updates. Kernels later than 6.4.1 requires firmware/packages to be updated. **On Debian, grub package updates have been known to make the system unbootable.**
 
 ## Features
 Below are a list of features that "work". Please note that there is still a lot of development being done and even though things may "work" they may not be perfect.
 
-- [x] USB
+- [x] Accelerated Graphics - not perfect but works
+- [x] Audio - not perfect but works
+- [x] Bluetooth (Tested bluetooth mouse)
+- [ ] Camera
+- [ ] Fingerprint sensor - 6.5 kernel or later
 - [x] GUI Desktop (Gnome/Wayland)
 - [x] Keyboard
-- [x] Touchpad
-- [x] Touchscreen with [udev rule](https://github.com/altacus/lenovo-x13s#touchscreen)
-- [x] WiFi (2.4 ghz & 5 ghz)
-- [x] Bluetooth (Tested bluetooth mouse)
 - [ ] LTE
-- [ ] Accelerated Graphics
-- [ ] Camera
-- [x] Audio - not perfect but works
+- [x] Touchpad
+- [x] Touchscreen see [udev rule](https://github.com/altacus/lenovo-x13s#touchscreen)
+- [x] WiFi (2.4 ghz & 5 ghz)
+- [x] USB
 
 ### Battery Life
 I've noticed that currently, battery life is still much better in Windows 11 than it is in Debian. However, with the 6.5.y kernel and ASPM enabled, idle battery life is on par with Windows.
