@@ -12,7 +12,7 @@ Below are a list of features that "work". Please note that there is still a lot 
 - [x] Audio - not perfect but works
 - [x] Bluetooth (Tested bluetooth mouse)
 - [ ] Camera
-- [ ] Fingerprint sensor - 6.5 kernel or later
+- [x] Fingerprint sensor - 6.5 kernel or later
 - [x] GUI Desktop (Gnome/Wayland)
 - [x] Keyboard
 - [ ] LTE
