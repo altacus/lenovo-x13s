@@ -103,13 +103,10 @@ sudo update-initramfs -u
 Steev's [6.5.y](https://github.com/steev/linux/tree/lenovo-x13s-linux-6.5.y) has significant improvements, however, at the time of this writing, the Debian packages in sid have not caught up to the kernel development. To resolve the Audio issues continue below.
 
 ### Audio issues resolution (dummy output only)
-To get audio working follow the steps (from [chat](https://oftc.irclog.whitequark.org/aarch64-laptops/2023-07-24)) I included links here for thoroughness.
-*  Get the new [firmware](https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/qcom/sc8280xp/LENOVO/21BX/audioreach-tplg.bin?id=f9a35b3f0779844aa686b76506344db70a72820d)
-*  Apply top 4 patches by [Srinivas-Kandagatla](https://github.com/Srinivas-Kandagatla/alsa-ucm-conf/commits/x13s-volume-fixes)
-*  Apply Device Number [Patch](https://github.com/alsa-project/alsa-ucm-conf/commit/9bda3d15cc38bb705a1aa13f58adfea74bf37fe8)
-*  Apply Volume Fix [Patch](https://github.com/alsa-project/alsa-ucm-conf/pull/335)
 
-The changes are reflected in files in the [/lib](https://github.com/altacus/lenovo-x13s/tree/main/lib) and [/usr](https://github.com/altacus/lenovo-x13s/tree/main/usr) directories.
+In Debian unstable, the alsa-ucm-conf version are current enough to support audio with the x13s. Directions on [debian's wiki](https://wiki.debian.org/InstallingDebianOn/Thinkpad/X13s). Here's the link for the new [firmware](https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/qcom/sc8280xp/LENOVO/21BX/audioreach-tplg.bin?id=f9a35b3f0779844aa686b76506344db70a72820d)
+
+The firmware files are available in [/lib](https://github.com/altacus/lenovo-x13s/tree/main/lib).
 
 ## ASPM
 Paraphrased from logs [here](https://oftc.irclog.whitequark.org/aarch64-laptops/2023-08-28) regarding ASPM which increases battery time 
